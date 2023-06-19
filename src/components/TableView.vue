@@ -15,7 +15,6 @@
         <td>{{ getUsersNamesById.names[todo.userId] ? getUsersNamesById.names[todo.userId].name : '' }}</td>
         <td>{{ todo.title }}</td>
         <td>{{ todo.completed ? todo.completed = 'completed' : '' }}</td>
-
       </tr>
       </tbody>
     </table>

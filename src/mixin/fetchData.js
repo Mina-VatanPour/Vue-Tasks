@@ -12,3 +12,4 @@ export const fetchData = (url) => {
 
     return result
 }
+
