@@ -7,7 +7,7 @@ export const useSearchTodos = () => {
     const users = fetchData('https://jsonplaceholder.typicode.com/users');
 
 
-    const getTodosCompleted = computed(() => {
+    const getTodosCompleted = computed(()=> {
         return todosList.value.filter(todo => todo.completed === 'completed')
     })
 
