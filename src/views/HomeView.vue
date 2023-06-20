@@ -2,16 +2,9 @@
 
   <div class="row home container">
 
-    <div class="row input-group">
-      <div class=" input-group mb-3">
-        <input type="search" class="form-control" placeholder="search titles ..." v-model="searchTitles">
-      </div>
-    </div>
+    <SearchBox @find-titles-searched="getSearchedTitles($event)"/>
 
-
-    <TableView v-if="searchTitles" :todos-list="findTodosSearched" :users="users"/>
-
-    <TableView v-else :todos-list="todosList" :users="users"/>
+    <TableView :todos-list="todosListFinal" :users="users"/>
 
   </div>
 </template>
@@ -21,18 +14,24 @@
 
 import {useSearchTodos} from '@/composable/search-todos';
 import TableView from '@/components/TableView';
+import SearchBox from '@/components/SearchBox';
 import {computed, ref} from 'vue';
 
 const {todosList, users} = useSearchTodos();
-let searchTitles = ref(null);
-const findTodosSearched = computed(() => {
-  if (searchTitles.value) {
-    return todosList.value.filter(item => item.title === searchTitles.value || item.title.includes(searchTitles.value))
+const titles = ref(null);
+
+const getSearchedTitles = (searchedTitles) => {
+  titles.value = searchedTitles
+  return titles.value
+}
+
+const todosListFinal = computed(() => {
+  if (titles.value) {
+    return todosList.value.filter(todo => todo.title === titles.value || todo.title.includes(titles.value))
   } else {
     return todosList.value
   }
 })
-
 </script>
 
 <style scoped>

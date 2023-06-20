@@ -1,6 +1,5 @@
 <template>
   <div class="row">
-
     <table class="table" id="tableTodos">
       <thead class="table-dark">
       <tr>
@@ -13,7 +12,7 @@
       </tr>
       </thead>
 
-      <tbody class="table-light" v-for="todo in getTodosList" :key="todo.id">
+      <tbody class="table-light" v-for="(todo,index) in getTodosList" :key="index">
       <tr>
         <td>{{ todo.id }}</td>
         <td>{{ getUsersNamesById.names[todo.userId] ? getUsersNamesById.names[todo.userId].name : '' }}</td>
@@ -45,7 +44,6 @@ const getUsersNamesById = reactive({
   })
 })
 const getTodosList = computed(() => {
-
   if (selectCompletedTodos.value) {
     return props.todosList.filter(todo => todo.completed === 'completed');
   } else {
