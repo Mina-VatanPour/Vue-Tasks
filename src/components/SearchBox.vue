@@ -12,8 +12,8 @@
 import {defineEmits} from "vue";
 
 const emmit = defineEmits(['findTitlesSearched']);
-const searchTitlesFunction = (e) => {
-  return emmit('findTitlesSearched', e.target.value);
+const searchTitlesFunction = (event) => {
+  return emmit('findTitlesSearched', event.target.value);
 }
 
 </script>
